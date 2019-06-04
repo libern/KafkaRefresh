@@ -274,11 +274,18 @@ static CGFloat const kStretchOffsetYAxisThreshold = 1.0;
 	}
 }
 
+- (void)endRefreshingAndNoLongerRefreshing {
+	if((!self.isRefresh && !self.isAnimating) || self.isHidden) return;
+	if (self.isShouldNoLongerRefresh) return;
+	self.shouldNoLongerRefresh = YES;
+	[self _endRefresh];
+}
+
 - (void)endRefreshingAndNoLongerRefreshingWithAlertText:(NSString *)text{
 	if((!self.isRefresh && !self.isAnimating) || self.isHidden) return;
 	if (self.isShouldNoLongerRefresh) return;
 	self.shouldNoLongerRefresh = YES;
-   
+
     @weakify(self);
 	if (self.alertLabel.alpha == 0.0) {
 		[UIView animateWithDuration:0.3 animations:^{
@@ -287,7 +294,7 @@ static CGFloat const kStretchOffsetYAxisThreshold = 1.0;
 		}];
 	}
 	[self bringSubviewToFront:self.alertLabel];
-	self.alertLabel.text = text; 
+	self.alertLabel.text = text;
 	if (text) {
 		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 			 @strongify(self);

@@ -171,6 +171,14 @@ NS_CLASS_AVAILABLE_IOS(7_0) @interface KafkaRefreshControl: UIView <KafkaRefresh
  Using this method means you clearly understand that refreshing
  is meaningless and refreshing will be disabled.
 
+ @param text If the user continues to drag, it will display nothing, and will not trigger refresh.
+ */
+- (void)endRefreshingAndNoLongerRefreshing Kafka_REQUIRES_SUPER;
+
+/**
+ Using this method means you clearly understand that refreshing
+ is meaningless and refreshing will be disabled.
+
  @param text If the user continues to drag, it will display the “text”, and will not trigger refresh.
  */
 - (void)endRefreshingAndNoLongerRefreshingWithAlertText:(NSString *)text Kafka_REQUIRES_SUPER;
