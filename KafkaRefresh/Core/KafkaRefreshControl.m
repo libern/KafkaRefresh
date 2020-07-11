@@ -277,7 +277,7 @@ static CGFloat const kStretchOffsetYAxisThreshold = 1.0;
 	if((!self.isRefresh && !self.isAnimating) || self.isHidden) return;
 	if (self.isShouldNoLongerRefresh) return;
 	self.shouldNoLongerRefresh = YES;
-	[self _endRefresh];
+	[self _endRefresh:nil];
 }
 
 - (void)endRefreshingAndNoLongerRefreshingWithAlertText:(NSString *)text{
